@@ -2,7 +2,19 @@
 #include <stdlib.h>
 #include <string.h>
 
-void bookroom() {}
+void bookroom() {
+    char name;
+    char nights;
+    char personal_id;
+    char bed_numbers
+    printf("Enter your name please:\n");
+    scanf("%s", &name);
+    printf("Enter Your personal id please:\n");
+    scanf("%s", &personal_id);
+    printf("Enter the number of nights you want to stay:\n");
+    scanf("%s", &nights);
+    printf("jyjkjhkhk")
+}
 void viewcustomers() {}
 void checkroomavailability() {}
 void generatebill() {}
