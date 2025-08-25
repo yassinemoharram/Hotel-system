@@ -51,11 +51,22 @@ void bookroom(struct Room hotel[], int size) {
     }
 }
 
-void viewcustomers() {}
-void checkroomavailability() {}
-void generatebill() {}
+void viewcustomers() {
+    printf("\n=== Customer List ===\n");
+    printf("No customers booked yet.\n");
+}
 
-void showmainfunction() {
+void checkroomavailability() {
+    printf("\n=== Room Availability ===\n");
+    printf("This function will show room status.\n");
+}
+
+void generatebill() {
+    printf("\n=== Generate Bill ===\n");
+    printf("This function will generate bills.\n");
+}
+
+void showmainfunction(struct Room hotel[], int size) {
     int choice;
     printf("===================================================\n");
     printf("         Welcome to the Hotel Management System       \n");
@@ -71,8 +82,7 @@ void showmainfunction() {
 
     switch(choice) {
         case 1:
-            // You need to pass hotel array and size here
-            // bookroom(hotel, size);
+            bookroom(hotel, size);
             break;
     
         case 2:
@@ -98,6 +108,18 @@ void showmainfunction() {
 }
 
 int main() {
-    showmainfunction();
+    // Initialize hotel with some sample rooms
+    struct Room hotel[5] = {
+        {101, 'S', 100.0, 0},  // Standard room, available
+        {102, 'S', 100.0, 0},  // Standard room, available
+        {201, 'D', 150.0, 0},  // Deluxe room, available
+        {202, 'D', 150.0, 0},  // Deluxe room, available
+        {301, 'P', 250.0, 0}   // Premium room, available
+    };
+    
+    int size = 5;
+    
+    // Pass hotel data to the main function
+    showmainfunction(hotel, size);
     return 0;
 }
