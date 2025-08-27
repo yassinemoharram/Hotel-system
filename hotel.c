@@ -62,8 +62,22 @@ void checkroomavailability() {
 }
 
 void generatebill() {
+    char name[50];
+    int Personalid;
+    char Type;
+    int Roomnumber;
+    float Price;
+    //fur mitarbeiter 
     printf("\n=== Generate Bill ===\n");
-    printf("This function will generate bills.\n");
+    printf("Enter The Name \n");
+    scanf("%s", name);
+    printf("Enter the Personal id \n");
+    scanf("%d", &Personalid);
+    printf("Enter the Type of the room \n ");
+    scanf("%s", &Type);
+    printf("Enter the number of the room ");
+    scanf("%d", &Roomnumber);
+    printf("Bill generated successfully!\n");
 }
 
 void showmainfunction(struct Room hotel[], int size) {
@@ -79,7 +93,6 @@ void showmainfunction(struct Room hotel[], int size) {
     printf("===================================================\n");
     printf("Enter Your choice: ");
     scanf("%d", &choice);
-
     switch(choice) {
         case 1:
             bookroom(hotel, size);
