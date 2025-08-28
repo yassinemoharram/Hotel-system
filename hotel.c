@@ -75,17 +75,17 @@ void generatebill() {
     printf("Enter the Personal id \n");
     scanf("%d", &Personalid);
     printf("Enter the Type of the room \n ");
-    scanf("%s", &Type);
+    scanf("%c", &Type);
     printf("Enter the number of the room \n");
     scanf("%d", &Roomnumber);
     printf("Enter the Price \n");
-    scanf("%2.f",&Price);
+    scanf("%f",&Price);
     printf("how many nights \n");
-    scanf("%d",%nights);
+    scanf("%d",&nights);
     float Total;
     Total = nights * Price ;
 
-    printf("Bill for Customer John (ID: %d)\n Room: %d (%S) \n Price per night: %2.f $ \n Nights: %d \n Total: 2.f $", Personalid, Roomnumber, Price , nights , Total);
+    printf("Bill for Customer %s (ID: %d)\n Room: %d (%c) \n Price per night: %.2f $ \n Nights: %d \n Total: %2.f $",name , Personalid, Roomnumber,Type , Price , nights , Total);
 }
 
 void showmainfunction(struct Room hotel[], int size) {
