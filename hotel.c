@@ -18,7 +18,7 @@ void bookroom(struct Room hotel[], int size) {
             hotel[i].Price,
             hotel[i].isbooked ? "Booked" : "Available");
     }
-    
+
     int choice;
     printf("\n Enter the room number you want to book: ");
     scanf("%d", &choice);
@@ -34,7 +34,7 @@ void bookroom(struct Room hotel[], int size) {
 
                 char name[50];
                 char personal_id[20];
-                
+
                 printf("Enter your name please:\n");
                 scanf("%s", name);
                 printf("Enter Your personal id please:\n");
@@ -68,8 +68,8 @@ void generatebill() {
     int Roomnumber;
     float Price;
     int nights;
-    //fur mitarbeiter 
-    printf("\n=== Generate Bill ===\n");
+    //fur mitarbeiter
+
     printf("Enter The Name \n");
     scanf("%s", name);
     printf("Enter the Personal id \n");
@@ -105,15 +105,15 @@ void showmainfunction(struct Room hotel[], int size) {
         case 1:
             bookroom(hotel, size);
             break;
-    
+
         case 2:
             viewcustomers();
             break;
-        
+
         case 3:
             checkroomavailability();
             break;
-        
+
         case 4:
             generatebill();
             break;
@@ -121,7 +121,7 @@ void showmainfunction(struct Room hotel[], int size) {
         case 5:
             printf("👋 Exiting program...\n");
             exit(0);
-            
+
         default:
             printf("Invalid choice (please choose the numbers that are given above)\n");
             break;
@@ -137,9 +137,9 @@ int main() {
         {202, 'D', 150.0, 0},  // Deluxe room, available
         {301, 'P', 250.0, 0}   // Premium room, available
     };
-    
+
     int size = 5;
-    
+
     // Pass hotel data to the main function
     showmainfunction(hotel, size);
     return 0;
