@@ -104,19 +104,64 @@ void generatebill(struct Room hotel[], int size) {
 
             float total = nights * hotel[i].Price;
 
-            printf("\n===== BILL =====\n");
-            printf("Customer: %s (ID: %s)\n", hotel[i].customerName, hotel[i].personal_id);
-            printf("Room: %d (%c)\n", hotel[i].number, hotel[i].Type);
-            printf("Price per night: %.2f $\n", hotel[i].Price);
-            printf("Nights: %d\n", nights);
+            printf("\n================= HOTEL BILL =================\n");
+            printf("Customer: %-20s | ID: %s\n", hotel[i].customerName, hotel[i].personal_id);
+            printf("Room No: %-3d | Type: %c | Price: %.2f $/night\n", hotel[i].number, hotel[i].Type, hotel[i].Price);
+            printf("Nights Stayed: %d\n", nights);
+            printf("----------------------------------------------\n");
             printf("TOTAL: %.2f $\n", total);
-            printf("================\n");
+            printf("==============================================\n");
             return;
         }
     }
     printf("❌ Room %d not found.\n", roomno);
 }
 
+void cancelbooking(struct Room hotel[], int size){
+
+    int roomno;
+    printf("Enter the room number to cancel booking: \n");
+    scanf("%d",&roomno);
+
+    for(int i = 0; i < size; i++){
+        if (hotel[i].number == roomno){
+            if(hotel[i].isbooked){
+                hotel[i].isbooked = 0;
+                strcpy(hotel[i].customerName,"");
+                strcpy(hotel[i].personal_id,"");
+                printf("✅ Booking for Room %d has been cancelled.\n", roomno);
+            } else {
+                printf("⚠️ Room %d is already available.\n", roomno);
+            }
+            return;
+        }
+    }
+    printf("❌ Room not found.\n");
+}
+
+void modifybooking(struct Room hotel[],int size){
+
+    int roomno;
+
+    printf("Enter the room number to modify booking: ");
+    scanf("%d", &roomno);
+
+    for (int i = 0; i < size; i++) {
+        if (hotel[i].number == roomno && hotel[i].isbooked) {
+            printf("Current Customer: %s (ID: %s)\n",
+                   hotel[i].customerName, hotel[i].personal_id);
+
+            printf("Enter new name: ");
+            scanf("%s", hotel[i].customerName);
+            printf("Enter new ID: ");
+            scanf("%s", hotel[i].personal_id);
+
+            printf("✅ Booking for Room %d has been updated.\n", roomno);
+            return;
+        }
+    }
+    printf("❌ Room not found or not booked.\n");
+}
 
 void showmainfunction(struct Room hotel[], int size) {
     int choice;
@@ -145,13 +190,23 @@ void showmainfunction(struct Room hotel[], int size) {
             break;
 
         
-            case 4:
+        case 4:
             generatebill(hotel, size);
             break;
 
         case 5:
+            cancelbooking(hotel, size);
+            break;
+
+        case 6:
+            modifybooking(hotel, size);
+            break;
+
+        case 6:
             printf("👋 Exiting program...\n");
             exit(0);
+
+        
 
         default:
             printf("Invalid choice (please choose the numbers that are given above)\n");
