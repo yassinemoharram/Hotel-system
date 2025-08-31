@@ -7,6 +7,8 @@ struct Room {
     char Type;
     float Price;
     int isbooked; // 0 = available, 1 = booked
+    char customerName[50];
+    char personal_id[20];
 };
 
 void bookroom(struct Room hotel[], int size) {
@@ -32,16 +34,15 @@ void bookroom(struct Room hotel[], int size) {
             } else {
                 hotel[i].isbooked = 1;
 
-                char name[50];
-                char personal_id[20];
+                
 
                 printf("Enter your name please:\n");
-                scanf("%s", name);
+                scanf("%s", hotel[i].customerName);
                 printf("Enter Your personal id please:\n");
-                scanf("%s", personal_id);
+                scanf("%s", hotel[i].personal_id);
 
                 printf("✅ Booking confirmed for %s (ID: %s) in Room %d\n",
-                       name, personal_id, hotel[i].number);
+                    hotel[i].customerName, hotel[i].personal_id, hotel[i].number);
             }
             break;
         }
@@ -51,42 +52,71 @@ void bookroom(struct Room hotel[], int size) {
     }
 }
 
-void viewcustomers() {
+void viewcustomers(struct Room hotel[], int size) {
+    int found = 0;
     printf("\n=== Customer List ===\n");
-    printf("No customers booked yet.\n");
+
+    for (int i = 0; i < size; i++) {
+        if (hotel[i].isbooked) {
+            printf("Room %d (%c) | %.2f $/night | Customer: %s (ID: %s)\n",
+                   hotel[i].number,
+                   hotel[i].Type,
+                   hotel[i].Price,
+                   hotel[i].customerName,
+                   hotel[i].personal_id);
+            found = 1;
+        }
+    }
+
+    if (!found) {
+        printf("⚠️ No customers booked yet.\n");
+    }
 }
 
-void checkroomavailability() {
+
+void checkroomavailability(struct Room hotel[], int size) {
     printf("\n=== Room Availability ===\n");
-    printf("This function will show room status.\n");
+    for (int i = 0; i < size; i++) {
+        printf("Room %d | Type: %c | Price: %.2f $ | Status: %s\n",
+               hotel[i].number,
+               hotel[i].Type,
+               hotel[i].Price,
+               hotel[i].isbooked ? "Booked" : "Available");
+    }
 }
 
-void generatebill() {
-    char name[50];
-    int Personalid;
-    char Type;
-    int Roomnumber;
-    float Price;
-    int nights;
-    //fur mitarbeiter
 
-    printf("Enter The Name \n");
-    scanf("%s", name);
-    printf("Enter the Personal id \n");
-    scanf("%d", &Personalid);
-    printf("Enter the Type of the room \n ");
-    scanf("%c", &Type);
-    printf("Enter the number of the room \n");
-    scanf("%d", &Roomnumber);
-    printf("Enter the Price \n");
-    scanf("%f",&Price);
-    printf("how many nights \n");
-    scanf("%d",&nights);
-    float Total;
-    Total = nights * Price ;
+void generatebill(struct Room hotel[], int size) {
+    int roomno;
+    printf("Enter the room number for bill generation: ");
+    scanf("%d", &roomno);
 
-    printf("Bill for Customer %s (ID: %d)\n Room: %d (%c) \n Price per night: %.2f $ \n Nights: %d \n Total: %2.f $",name , Personalid, Roomnumber,Type , Price , nights , Total);
+    for (int i = 0; i < size; i++) {
+        if (hotel[i].number == roomno) {
+            if (hotel[i].isbooked == 0) {
+                printf("⚠️ Room %d is not booked. No bill available.\n", roomno);
+                return;
+            }
+
+            int nights;
+            printf("How many nights did the customer stay? ");
+            scanf("%d", &nights);
+
+            float total = nights * hotel[i].Price;
+
+            printf("\n===== BILL =====\n");
+            printf("Customer: %s (ID: %s)\n", hotel[i].customerName, hotel[i].personal_id);
+            printf("Room: %d (%c)\n", hotel[i].number, hotel[i].Type);
+            printf("Price per night: %.2f $\n", hotel[i].Price);
+            printf("Nights: %d\n", nights);
+            printf("TOTAL: %.2f $\n", total);
+            printf("================\n");
+            return;
+        }
+    }
+    printf("❌ Room %d not found.\n", roomno);
 }
+
 
 void showmainfunction(struct Room hotel[], int size) {
     int choice;
@@ -107,15 +137,16 @@ void showmainfunction(struct Room hotel[], int size) {
             break;
 
         case 2:
-            viewcustomers();
+            viewcustomers(hotel, size);
             break;
 
         case 3:
-            checkroomavailability();
+            checkroomavailability(hotel, size); 
             break;
 
-        case 4:
-            generatebill();
+        
+            case 4:
+            generatebill(hotel, size);
             break;
 
         case 5:
