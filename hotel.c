@@ -141,6 +141,8 @@ int main() {
     int size = 5;
 
     // Pass hotel data to the main function
-    showmainfunction(hotel, size);
+    while (1) {
+        showmainfunction(hotel, size);
+    }
     return 0;
 }
