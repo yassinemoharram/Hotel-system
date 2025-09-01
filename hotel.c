@@ -172,7 +172,9 @@ void showmainfunction(struct Room hotel[], int size) {
     printf("2. View Customers\n");
     printf("3. Check Room Availability\n");
     printf("4. Generate Bill \n");
-    printf("5. Exit\n");
+    printf("5. Cancel Booking\n");
+    printf("6. Modify Booking\n");
+    printf("7. Exit\n");
     printf("===================================================\n");
     printf("Enter Your choice: ");
     scanf("%d", &choice);
@@ -202,7 +204,7 @@ void showmainfunction(struct Room hotel[], int size) {
             modifybooking(hotel, size);
             break;
 
-        case 6:
+        case 7:
             printf("👋 Exiting program...\n");
             exit(0);
 
