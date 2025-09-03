@@ -213,6 +213,7 @@ void showmainfunction(struct Room hotel[], int size) {
         default:
             printf("Invalid choice (please choose the numbers that are given above)\n");
             break;
+            
     }
 }
 
