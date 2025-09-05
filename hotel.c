@@ -109,7 +109,8 @@ void generatebill(struct Room hotel[], int size) {
             printf("Room No: %-3d | Type: %c | Price: %.2f $/night\n", hotel[i].number, hotel[i].Type, hotel[i].Price);
             printf("Nights Stayed: %d\n", nights);
             printf("----------------------------------------------\n");
-            printf("TOTAL: %.2f $\n", total);
+            printf("TOTAL : %.2f $\n", total);
+            printf("ghjliuoo");
             printf("==============================================\n");
             return;
         }
@@ -162,6 +163,10 @@ void modifybooking(struct Room hotel[],int size){
     }
     printf("❌ Room not found or not booked.\n");
 }
+void login(){
+
+
+}
 
 void showmainfunction(struct Room hotel[], int size) {
     int choice;
@@ -211,10 +216,12 @@ void showmainfunction(struct Room hotel[], int size) {
         
 
         default:
-            printf("Invalid choice (please choose the numbers that are given above)\n");
+            printf("Invalid  choice (please choose the numbers that are given above)\n");
             break;
 
-            
+
+
+
 
     }
 }
