@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+
+
 struct Room {
     int number;
     char Type;
@@ -163,10 +165,30 @@ void modifybooking(struct Room hotel[],int size){
     }
     printf("❌ Room not found or not booked.\n");
 }
-void login(){
+void searchCustomer(struct Room hotel[], int size) {
+    char input[50];
+    printf("Enter customer name or ID to search: ");
+    scanf("%s", input);
 
+    int found = 0;
+    for (int i = 0; i < size; i++) {
+        if (hotel[i].isbooked &&
+           (strcmp(hotel[i].customerName, input) == 0 || strcmp(hotel[i].personal_id, input) == 0)) {
+            printf("Room %d | Type: %c | Price: %.2f | Customer: %s | ID: %s\n",
+                   hotel[i].number, hotel[i].Type, hotel[i].Price,
+                   hotel[i].customerName, hotel[i].personal_id);
+            found = 1;
+        }
+    }
 
+    if (!found) {
+        printf("⚠️ Customer not found.\n");
+    }
 }
+
+
+
+
 
 void showmainfunction(struct Room hotel[], int size) {
     int choice;
@@ -210,6 +232,10 @@ void showmainfunction(struct Room hotel[], int size) {
             break;
 
         case 7:
+            searchCustomer(hotel, int size)
+            break;
+
+        case 8:
             printf("👋 Exiting program...\n");
             exit(0);
 
