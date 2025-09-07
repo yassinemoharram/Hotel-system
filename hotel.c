@@ -112,7 +112,7 @@ void generatebill(struct Room hotel[], int size) {
             printf("Nights Stayed: %d\n", nights);
             printf("----------------------------------------------\n");
             printf("TOTAL : %.2f $\n", total);
-            printf("ghjliuoo");
+
             printf("==============================================\n");
             return;
         }
@@ -201,7 +201,8 @@ void showmainfunction(struct Room hotel[], int size) {
     printf("4. Generate Bill \n");
     printf("5. Cancel Booking\n");
     printf("6. Modify Booking\n");
-    printf("7. Exit\n");
+    printf("7. Search Customer\n");
+    printf("8. Exit\n");
     printf("===================================================\n");
     printf("Enter Your choice: ");
     scanf("%d", &choice);
@@ -232,7 +233,7 @@ void showmainfunction(struct Room hotel[], int size) {
             break;
 
         case 7:
-            searchCustomer(hotel, int size)
+            searchCustomer(hotel, size)
             break;
 
         case 8:
